@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'sharon': ['Sharon - Personal Use Regular', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }

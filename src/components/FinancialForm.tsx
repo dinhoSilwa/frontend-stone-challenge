@@ -86,7 +86,8 @@ export const Form = () => {
 <>
 <form onSubmit={handleSubmit(onSubmit)}>
       <fieldset>
-        <label htmlFor="dolar">Dolar</label>
+        <label htmlFor="dolar" className="font-sharon">Dolar</label>
+      
         <input
           type="text"
           inputMode="decimal"
