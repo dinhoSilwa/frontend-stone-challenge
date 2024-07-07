@@ -5,7 +5,6 @@
    elas são importantes para alinhar as imagens
 -->
 
-
 <div align="center">
    <img src=".github/brand.svg" height="90">
 </div>
@@ -36,7 +35,6 @@ A aplicação deve mostrar os seguintes dados:
 
 ### Comprando com dinheiro 
 
-
 `[(Valor em dólar) + (imposto do Estado)] x (valor do dólar + IOF da compra de dólar)`
 
 ### Comprando com cartão 
@@ -48,26 +46,26 @@ A aplicação deve mostrar os seguintes dados:
 
 ## Possíveis dúvidas:
 
-- IOF é um imposto federal e tem como intuito ser um regulador da economia nacional. Em dinheiro, seu valor é 1,1%, e em cartão 6,4%
-- Nos EUA, cada Estado tem sua própria cobrança de impostos. Por exemplo, o imposto de Nevada é de 8,19%, já o de Nova Iorque é de 8,87%
+- IOF é um imposto federal e tem como intuito ser um regulador da economia nacional. Em dinheiro, seu valor é 1,1%, e em cartão 6,4%.
+- Nos EUA, cada Estado tem sua própria cobrança de impostos. Por exemplo, o imposto de Nevada é de 8,19%, já o de Nova Iorque é de 8,87%.
 
 <br/>
 
 ## Layout
-O layout está disponível no [figma][FIGMA_URL]
+O layout está disponível no [Figma][FIGMA_URL]
 
 [![figma-layout][FIGMA-IMAGE]][FIGMA_URL]
 
 ## Requisitos
-- Utilize a fonte do layout
-- Utilize React
-- Utilize TypeScript
-- Crie um cliente HTTP com axios
-- Faça testes unitários dos seus componentes
-- Utilize uma bilbioteca de cache como swr ou react-query
-- Utlize styled-components
-- Publique sua aplicação em uma plataforma de deploy rápido ([vercel](https://zeit.co/)/[heroku](https://www.heroku.com)/[netlify](https://www.netlify.com)/outros)
-- Publique seu código no seu perfil no GitHub em um **repositório privado**
+- Utilize a fonte do layout.
+- Utilize React.
+- Utilize TypeScript.
+- Crie um cliente HTTP com Axios.
+- Faça testes unitários dos seus componentes.
+- Utilize uma biblioteca de cache como SWR ou React Query.
+- Utilize styled-components.
+- Publique sua aplicação em uma plataforma de deploy rápido ([Vercel](https://zeit.co/)/[Heroku](https://www.heroku.com)/[Netlify](https://www.netlify.com)/outros).
+- Publique seu código no seu perfil no GitHub em um **repositório privado**.
 
 <br/>
 
@@ -86,7 +84,7 @@ O layout está disponível no [figma][FIGMA_URL]
 ### Boas práticas
 - O código está de acordo com o guia de estilo da linguagem?
 - O código está bem estruturado?
-- O código faz o bom uso de *Design Patterns*?
+- O código faz bom uso de *Design Patterns*?
 - O código possui testes?
 
 <img align="right" src=".github/document.svg" width="90">
