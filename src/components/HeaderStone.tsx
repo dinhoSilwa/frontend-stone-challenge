@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react'
-import logo from '../assets/stonelogo.png'
+import logo from './../assets/stonelogo.png'
 export const HeaderStone = () => {
 
   const now = new Date();
 
   // Obtém a hora atual em UTC
-  const utcHours = now.getUTCHours();
+  const utcHours = now.getHours();
   const utcMinutes = now.getUTCMinutes();
   const utcMonth = now.getUTCMonth()
   const utcDay = now.getUTCDate();
@@ -16,23 +15,26 @@ export const HeaderStone = () => {
   ];
   return (
     <>
- 
-      <header className='flex items-center gap-8 border w-1/2 py-8 px-8'>
 
-        <figure className='flex w-[30%]'>
-          <img src={logo} alt="stonelogo" className='w-[100px]' />
+      <header className='flex items-center w-1/2 py-8 px-12 gap-[64px]'>
+
+        <figure className='flex'>
+          <img src={logo} alt="stonelogo" className='w-[150px]' />
         </figure>
 
-<section className='flex flex-col'>
+        <section className='flex flex-col'>
           <div className='flex gap-4'>
-            <span className='text-[20px] font-sharon'> {`${utcDay} ${monthNames[utcMonth]} de ${utcYear}`}</span>
-            <span className='border-[2px] border-slate-400 h-[30px]'></span>
-            <span> {`${utcHours} : ${utcMinutes} UTC`}</span>
+            <strong className='text-[18px] sharon text-primary-text'> {`${utcDay} ${monthNames[utcMonth]} de ${utcYear}`}</strong>
+            <span className='border-[2px] h-[30px]'></span>
+            <strong className='text-[18px] sharon text-primary-text'>
+              {`${utcHours < 10 ? "0" + utcHours : utcHours} : ${utcMinutes < 10 ? "0" + utcMinutes : utcMinutes} UTC`}
+            </strong>
+
           </div>
-<section className='flex-1 w-[100%] text-[14px] text-slate-600'>
-Dados de câmbio disponibilizados pela Morningstar.
-</section>
-</section>
+          <section className='flex-1 w-[100%] text-[14px] text-second-text'>
+            Dados de câmbio disponibilizados pela Morningstar.
+          </section>
+        </section>
 
 
 

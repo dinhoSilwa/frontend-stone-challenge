@@ -11,11 +11,16 @@ import {
 import useSWR from "swr";
 import { fetcher } from "../api/apicurrency";
 import { Dashboard } from "./FinancialDetails";
+import { ArrowRightLeft } from "lucide-react";
+import clsx from "clsx";
 
 
 
 
 export const Form = () => {
+  const [isOpen, setisOpen] = useState(false)
+
+
   const { data } = useSWR(
     "https://economia.awesomeapi.com.br/last/USD-BRL",
     fetcher
@@ -51,28 +56,30 @@ export const Form = () => {
   };
 
   const calculateQuotation = ({ dolar, PayMethod, stateRate }: IFormCurrency) => {
-   
+
+    setisOpen(!isOpen)
+
     const USD = cleanNonNumeric(dolar);
     const BRL = Number(data.USDBRL.high);
     const stateTax = Number(stateRate) / 100;
     const USD_WITH_STATE_TAX = USD + (USD * stateTax);
     const IOF_MONEY = currencyData.brlIOFmoney;
     const IOF_CARD = currencyData.brlIOFcard;
-    
+
     const totalBRL = PayMethod === "money"
       ? USD_WITH_STATE_TAX * (BRL + (BRL * IOF_MONEY))
       : (USD_WITH_STATE_TAX + (USD * IOF_CARD)) * BRL;
 
-    const BRLCOIN = totalBRL.toLocaleString('pt-br', {style : 'currency', currency : 'BRL'})
-    const BRLCOTATION = BRL.toLocaleString('pt-br', {style : 'currency', currency : 'BRL'})
-    
-      setcurrencyData((prevState)=>({
-        ...prevState,
-        BRL : BRLCOTATION,
-        totalBRL : BRLCOIN,
+    const BRLCOIN = totalBRL.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+    const BRLCOTATION = BRL.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
 
-       
-      }))
+    setcurrencyData((prevState) => ({
+      ...prevState,
+      BRL: BRLCOTATION,
+      totalBRL: BRLCOIN,
+
+
+    }))
 
   };
 
@@ -83,61 +90,93 @@ export const Form = () => {
   };
 
   return (
-<>
-<form onSubmit={handleSubmit(onSubmit)} className="z-50">
-      <fieldset>
-        <label htmlFor="dolar" className="font-sharon">Dolar</label>
-      
-        <input
-          type="text"
-          inputMode="decimal"
-          value={currencyData?.dolar as string}
-          {...register("dolar")}
-          onChange={handlechange}
-        />
-        {errors.dolar && <span>{errors.dolar.message}</span>}
-      </fieldset>
+    <>
+      <section className="w-1/2 flex flex-col">
+        <form onSubmit={handleSubmit(onSubmit)} className={clsx("z-50 sharon flex flex-col", { "hidden": isOpen })}>
+          <fieldset className=" w-1/2 px-12 flex gap-10">
+            <fieldset className="flex flex-col">
+              <label htmlFor="dolar" className="sharon font-semibold text-primary-text text-[18px]"><small>Dolar</small></label>
 
-      <fieldset>
-        <label htmlFor="dolar">Taxa Do Estado</label>
+              <input
+                type="text"
+                inputMode="decimal"
+                value={currencyData?.dolar as string}
+                {...register("dolar")}
+                onChange={handlechange}
+                className="border py-2 px-2 border-b-[8px] focus:outline-green-700 w-[140px] rounded-sm"
+                aria-required="true"
+              />
+              {errors.dolar && <span className="text-red-600" role="alert" aria-live="assertive">{errors.dolar.message}</span>}
+            </fieldset>
 
-        <select {...register("stateRate")} onChange={handlechange}>
-          {USAstates.map(({ state, purchaseRate }, index) => (
-            <option key={index} value={purchaseRate}>
-              {`${state} - ${purchaseRate}%`}
-            </option>
-          ))}
-        </select>
-        {errors.stateRate && <span>{errors.stateRate.message}</span>}
-      </fieldset>
+            <div className="flex flex-col">
+              <label htmlFor="dolar" className="sharon font-semibold text-primary-text text-[18px]"><span>Taxa do Estado:</span></label>
+              <select {...register("stateRate")} onChange={handlechange}
+                className="border py-[8px] px-2 border-b-[8px] focus:outline-none w-auto rounded-sm"
 
-      <fieldset>
-        <legend>Tipo de Compra</legend>
-        <label htmlFor="PayMethodMoney">Dinheiro / Pix</label>
-        <input
-          type="radio"
-          value="money"
-          {...register("PayMethod")}
-          onChange={handlechange}
-        />
-        {errors.PayMethod && <span>{errors.PayMethod.message}</span>}
+              >
+                {USAstates.map(({ state, purchaseRate }, index) => (
+                  <option key={index} value={purchaseRate} aria-required="true" role="alert">
+                    {`${state} - ${purchaseRate}%`}
+                  </option>
+                ))}
+              </select>
+              {errors.stateRate && <span className="text-red-600">{errors.stateRate.message}</span>}
+            </div>
 
-        <label htmlFor="PayMethodCard">Cartão de Credito</label>
-        <input
-          type="radio"
-          value="card"
-          {...register("PayMethod")}
-          onChange={handlechange}
-        />
-        {errors.PayMethod && <span>{errors.PayMethod.message}</span>}
-      </fieldset>
 
-      <fieldset>
-        <button type="submit">Converter</button>
-      </fieldset>
-    </form>
+          </fieldset>
+          <section className="px-12 mt-6">
+            <label className="sharon font-semibold text-primary-text text-[18px]"><span>Tipo de Compra</span></label>
 
-    <Dashboard Operation={currencyData} />
-</>
+          </section>
+          <fieldset className="mb-4 button-radio-container flex gap-8 px-12 flex-wrap py-4">
+            <fieldset className="flex gap-1 items-center">
+
+              <input
+                id="PayMethodMoney"
+                type="radio"
+                value="money"
+                {...register("PayMethod")}
+                onChange={handlechange}
+                className="peer"
+                aria-required="true"
+                aria-describedby="Campo de Dolar"
+              />
+
+              <label htmlFor="PayMethodMoney" className="cursor-pointer ml-2">Dinheiro / Pix</label>
+
+
+            </fieldset>
+
+            <fieldset className="flex items-center">
+
+              <input
+                id="PayMethodCard"
+                type="radio"
+                value="card"
+                {...register("PayMethod")}
+                onChange={handlechange}
+                className=" peer"
+                aria-required="true"
+                aria-describedby="Selecionar Taxa Estadual Americana"
+
+              />
+
+              <label htmlFor="PayMethodCard" className="cursor-pointer ml-2">Cartão de Crédito</label>
+
+
+            </fieldset>
+            {errors.PayMethod && <span className="text-red-600" role="alert" aria-live="assertive">Escolha um Tipo de Compra</span>}
+          </fieldset>
+
+          <fieldset className="px-12">
+            <button type="submit" className={clsx("flex items-center px-4 py-2 gap-2 h-12 bg-stone-color rounded-[10px] text-white")}><ArrowRightLeft /> Converter</button>
+          </fieldset>
+        </form>
+
+        <Dashboard Operation={currencyData} />
+      </section>
+    </>
   );
 };
