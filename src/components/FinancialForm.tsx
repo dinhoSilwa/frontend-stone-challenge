@@ -92,7 +92,7 @@ export const Form = () => {
   return (
     <>
       <section className="w-1/2 mob-mini:w-full flex flex-col">
-        <form onSubmit={handleSubmit(onSubmit)} className={clsx("hidden z-50 sharon  flex-col mob-mini:flex mob-mini:px-8 ", { "hidden mob-mini:hidden": !isOpen })}>
+        <form onSubmit={handleSubmit(onSubmit)} className={clsx("hidden z-50 sharon  flex-col mob-mini:flex mob-mini:px-8", { "hidden mob-mini:hidden": !isOpen })}>
           <fieldset className=" w-1/2  flex gap-10 mob-mini:flex-col mob-mini:gap-4">
             <fieldset className="flex flex-col ">
               <label htmlFor="dolar" className="sharon font-semibold text-primary-text text-[18px]"><small>Dolar</small></label>
@@ -103,7 +103,7 @@ export const Form = () => {
                 value={currencyData?.dolar as string}
                 {...register("dolar")}
                 onChange={handlechange}
-                className="border py-2 px-2 border-b-[8px] focus:outline-green-700 w-[140px] rounded-sm"
+                className="border py-2 px-2 border-b-[8px] focus:outline-green-700 w-[140px] rounded-sm mob-mini:text-[18px] mob-mini:font-bold text-zinc-700"
                 aria-required="true"
               />
               {errors.dolar && <span className="text-red-600" role="alert" aria-live="assertive">{errors.dolar.message}</span>}
@@ -112,7 +112,7 @@ export const Form = () => {
             <div className="flex flex-col">
               <label htmlFor="dolar" className="sharon font-semibold text-primary-text text-[18px]"><span>Taxa do Estado:</span></label>
               <select {...register("stateRate")} onChange={handlechange}
-                className="border py-[8px] px-2 border-b-[8px] focus:outline-none w-auto rounded-sm"
+                className="border py-[8px] px-2 border-b-[8px] focus:outline-none w-auto rounded-sm mob-medium:w-[180px]"
 
               >
                 {USAstates.map(({ state, purchaseRate }, index) => (
