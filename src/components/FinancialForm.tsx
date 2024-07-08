@@ -18,7 +18,7 @@ import clsx from "clsx";
 
 
 export const Form = () => {
-  const [isOpen, setisOpen] = useState(false)
+  const [isOpen, setisOpen] = useState(true)
 
 
   const { data } = useSWR(
@@ -91,10 +91,10 @@ export const Form = () => {
 
   return (
     <>
-      <section className="w-1/2 flex flex-col">
-        <form onSubmit={handleSubmit(onSubmit)} className={clsx("z-50 sharon flex flex-col", { "hidden": isOpen })}>
-          <fieldset className=" w-1/2 px-12 flex gap-10">
-            <fieldset className="flex flex-col">
+      <section className="w-1/2 mob-mini:w-full flex flex-col">
+        <form onSubmit={handleSubmit(onSubmit)} className={clsx("hidden z-50 sharon  flex-col mob-mini:flex mob-mini:px-8 ", { "hidden mob-mini:hidden": !isOpen })}>
+          <fieldset className=" w-1/2  flex gap-10 mob-mini:flex-col mob-mini:gap-4">
+            <fieldset className="flex flex-col ">
               <label htmlFor="dolar" className="sharon font-semibold text-primary-text text-[18px]"><small>Dolar</small></label>
 
               <input
@@ -126,11 +126,11 @@ export const Form = () => {
 
 
           </fieldset>
-          <section className="px-12 mt-6">
-            <label className="sharon font-semibold text-primary-text text-[18px]"><span>Tipo de Compra</span></label>
+          <section className=" mt-6 mob-mini:flex mob-mini:px-0">
+            <label className="sharon font-semibold text-primary-text text-[18px] mob-mini: "><span>Tipo de Compra</span></label>
 
           </section>
-          <fieldset className="mb-4 button-radio-container flex gap-8 px-12 flex-wrap py-4">
+          <fieldset className="mb-4 button-radio-container flex gap-8  flex-wrap py-4 mob-mini:flex">
             <fieldset className="flex gap-1 items-center">
 
               <input
@@ -149,7 +149,7 @@ export const Form = () => {
 
             </fieldset>
 
-            <fieldset className="flex items-center">
+            <fieldset className="flex items-center ">
 
               <input
                 id="PayMethodCard"
@@ -170,7 +170,7 @@ export const Form = () => {
             {errors.PayMethod && <span className="text-red-600" role="alert" aria-live="assertive">Escolha um Tipo de Compra</span>}
           </fieldset>
 
-          <fieldset className="px-12">
+          <fieldset className="">
             <button type="submit" className={clsx("flex items-center px-4 py-2 gap-2 h-12 bg-stone-color rounded-[10px] text-white")}><ArrowRightLeft /> Converter</button>
           </fieldset>
         </form>

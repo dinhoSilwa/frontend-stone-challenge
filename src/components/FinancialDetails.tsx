@@ -11,7 +11,7 @@ export const Dashboard: React.FC<IDashBoardProps> = ({ Operation }) => {
   return (
     <>
       {
-        Operation.totalBRL && <form className="px-12" action="/">
+        Operation.totalBRL && <form className="mob-mini:px-12" action="/">
           <button type="submit" 
           className={clsx("flex items-center px-4 py-2 gap-2 h-12 rounded-[10px] text-primary-text border-2 border-zinc-400 shadow-md mb-10")}
          
