@@ -18,10 +18,10 @@ export const Dashboard: React.FC<IDashBoardProps> = ({ Operation }) => {
           >
             <MoveLeft /> Voltar</button>
 
-          <article className="w-[280px]" >
+          <article className="w-[40%]" >
             <strong className=' text-[18px] text-primary-text'>O resultado do Calculo é : </strong>
             <p className="text-[56px] font-semibold text-stone-color font-[inter]">{Operation.totalBRL}</p>
-            <p className='w-[100%] text-[14px] font-semibold text-primary-text'>Compra no {Operation.PayMethod == "money" ? 'Pix / Dinheiro' : "Cartão de Crédito"}</p>
+            <p className='w-[100%] text-[14px] font-semibold text-primary-text'>Compra no {Operation.PayMethod == "money" ? 'Pix / Dinheiro' : "Cartão de Crédito"} e taxa total de {Operation.totalRate} %</p>
             <p className='w-[100%] text-[14px] font-semibold text-primary-text'>Cotação do Dola $1 = R$ {Operation.BRL}</p>
           </article>
         </form>

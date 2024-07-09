@@ -2,7 +2,7 @@ import * as yup from 'yup'
 export const schema = yup.object().shape({
   dolar: yup
     .string()
-    .required('Digite o valor do dólar'), 
+    .required('Digite o valor em Dólar'), 
   stateRate: yup
     .string()
     .required('Digite o valor da taxa estadual'), 

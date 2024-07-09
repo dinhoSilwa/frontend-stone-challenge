@@ -15,6 +15,7 @@ export default {
         'stone-color' : "#00AB63"
       },
       screens: {
+        'old-mini' : '320px',
         'mob-mini' : '412px',
         'mob-small': '640px',    
         'mob-medium': '768px',   
