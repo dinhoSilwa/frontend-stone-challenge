@@ -1,10 +1,11 @@
+import clsx from 'clsx';
 import logo from './../assets/stonelogo.png';
 
 export const HeaderStone = () => {
   const now = new Date();
 
   // Obtém a hora atual em UTC
-  const utcHours = now.getHours();
+  const utcHours = now.getUTCHours();
   const utcMinutes = now.getUTCMinutes();
   const utcMonth = now.getUTCMonth();
   const utcDay = now.getUTCDate();
@@ -16,23 +17,29 @@ export const HeaderStone = () => {
   ];
 
   return (
-    <header className='flex items-center py-8 gap-[64px] mob-mini:gap-[32px] mob-mini:w-[70%] ml-10 mob-mini:flex-col mob-medium:flex-row mob-medium:px-8 flex-col px-8 mob-small:flex-row mob-small:pt-10'>
-      <figure className='flex'>
-        <img src={logo} alt="stonelogo" className='w-[100px] mob-mini:w-[120px]' />
+    <header className={clsx("px-4 py-8 flex flex-col gap-[16px]", 
+    "mob-small:flex-row mob-small:items-center mob-small:gap-8",
+     "desk-small:px-8")}>
+      <figure>
+        <img src={logo} alt="stonelogo" className={clsx("w-[80px]", "mob-small:w-[120px]")} />
       </figure>
 
-      <section className='mob-mini:items-center mob-mini:justify-center mob-mini:gap-2 flex-row w-full mob-small:w-1/2 mob-medium:mob-mini:justify-start'>
-        <div className='flex mob-mini:items-center items-center justify-center w-full mob-medium:justify-start'>
-          <strong className='w-[300px] mob-medium:w-[130px] items-start text-[14px] sharon text-primary-text mob-mini:text-center border-r-4 border-zinc-500 flex justify-center'>
+      <section className={clsx("flex flex-col gap-1",
+         "mob-small:gap-0")}>
+        <div className={clsx('flex')}>
+          <strong className={clsx('w-[130px] text-primary-text flex justify-start text-[12px] sharon border-r-2 border-primary-text', 
+            "mob-medium:text-[14px]")}>
             {`${utcDay} ${monthNames[utcMonth]} de ${utcYear}`}
           </strong>
-          <strong className='w-[300px] mob-medium:w-[130px] text-[14px] sharon text-primary-text mob-mini:text-center flex justify-center'>
-            {`${utcHours < 10 ? "0" + utcHours : utcHours} : ${utcMinutes < 10 ? "0" + utcMinutes : utcMinutes} UTC`}
+          <strong className={clsx("w-[130px] text-primary-text flex justify-start pl-4 text-[12px] sharon", 
+            "mob-medium:text-[14px]")}>
+            {`${utcHours < 10 ? "0" + utcHours : utcHours}:${utcMinutes < 10 ? "0" + utcMinutes : utcMinutes} UTC`}
           </strong>
         </div>
-        <section className='flex w-[100%] text-[12px] text-center text-second-text mob-mini:text-center mob-mini:text-[12px] mob-medium:w-[80%]'>
+        <p className={clsx("text-[10px] text-second-text",
+           "mob-medium:text-[12px]")}>
           Dados de câmbio disponibilizados pela Morningstar.
-        </section>
+        </p>
       </section>
     </header>
   );
