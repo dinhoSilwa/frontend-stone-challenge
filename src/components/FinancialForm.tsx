@@ -46,7 +46,8 @@ export const Form = () => {
     const convert = cleanNonNumeric(value);
     setcurrencyData((prevState) => ({
       ...prevState,
-      [name]: name === "dolar" ? numberToMoneyString(convert) : value,
+      [name]: name === "dolar" ?
+        numberToMoneyString(convert) : value,
     }));
   };
 
@@ -85,15 +86,15 @@ export const Form = () => {
 
   return (
     <>
-      <section className="w-1/2 mob-mini:w-full flex flex-col px-6">
+      <section className={clsx(" flex flex-col px-4", "mob-mini:w-full desk-small:px-8")}>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className={clsx(
-            "w-[300px] z-50 sharon flex-col mob-mini:flex mob-mini:px-8",
+            "w-full flex flex-col gap-4",
             { "hidden mob-mini:hidden": !isOpen }
           )}
         >
-          <fieldset className="w-1/2 flex gap-10 mob-mini:flex-col mob-mini:gap-4 old-mini:flex-col">
+          <fieldset className="w-full flex gap-10 mob-mini:flex-col mob-mini:gap-4 old-mini:flex-col">
             <fieldset className="flex flex-col">
               <label
                 htmlFor="dolar"
@@ -127,7 +128,7 @@ export const Form = () => {
               <select
                 {...register("stateRate")}
                 onChange={handlechange}
-                className="border py-[8px] px-2 border-b-[8px] focus:outline-none w-auto rounded-sm mob-medium:w-[180px]"
+                className="w-[180px] border py-[8px] px-2 border-b-[8px] focus:outline-none rounded-sm mob-medium:w-[180px]"
               >
                 {USAstates.map(({ state, purchaseRate }, index) => (
                   <option key={index} value={purchaseRate} aria-required="true" role="alert">
@@ -141,13 +142,13 @@ export const Form = () => {
             </div>
           </fieldset>
 
-          <section className="mt-6 mob-mini:flex mob-mini:px-0">
+          <section className="mt-6 mob-mini:flex mob-mini:px-0 ">
             <label className="sharon font-semibold text-primary-text text-[18px] mob-mini:">
               <span>Tipo de Compra</span>
             </label>
           </section>
 
-          <fieldset className="mb-4 button-radio-container flex gap-8 flex-wrap py-4 mob-mini:flex mob-mini:w-[400px]">
+          <fieldset className="flex flex-row gap-2">
             <fieldset className="flex gap-1 items-center">
               <input
                 id="PayMethodMoney"
